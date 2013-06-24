@@ -148,7 +148,7 @@ when "size"
   end
 when "create"
   if repository
-    serv.create(repository)
+    serv.create(repository, { :license => arguments.shift })
     $stderr.puts "#{repository} created"
   else
     $stderr.puts "ERROR: missing a repository name."

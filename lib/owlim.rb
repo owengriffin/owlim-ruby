@@ -280,6 +280,7 @@ class OWLIM
     repository_label = opts[:repository_label]
     default_namespace = opts[:default_namespace]
     base_url = opts[:base_url]
+    license = opts[:license]
 
     template = "/owlim/create_repository.xml.erb"
     erb = ERB.new(File.read(File.dirname(__FILE__) + template), nil, "-")
