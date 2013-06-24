@@ -144,6 +144,7 @@ class OWLIM
   end
 
   def query(repository, sparql, opts={}, &block)
+    opts[:infer] = false if opts[:infer].nil?
     result = ""
 
     case opts[:format]
@@ -158,7 +159,7 @@ class OWLIM
     sparql_str = CGI.escape(prefix + sparql)
     
     Net::HTTP.start(@host, @port) do |http|
-      path = "#{@path}/repositories/#{repository}?query=#{sparql_str}"
+      path = "#{@path}/repositories/#{repository}?query=#{sparql_str}&infer=#{opts[:infer]}"
       http.get(path, {"Accept" => "#{format}"}) { |body|
         if block and opts[:format] # xml or json
           yield body
